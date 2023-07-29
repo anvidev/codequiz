@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/DropdownMenu";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
-import { LogOut } from "lucide-react";
+import { LogOut, LayoutDashboard, User, GraduationCapIcon } from "lucide-react";
 import { UserAvatar } from "@/components/UserAvatar";
 
 interface Props {
@@ -20,10 +20,10 @@ interface Props {
 function UserButton({ user }: Props) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="rounded-lg">
+      <DropdownMenuTrigger className="rounded-md">
         <UserAvatar user={user} />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-zinc-50 darK:bg-zinc-700" align="end">
+      <DropdownMenuContent className="bg-zinc-50 dark:bg-zinc-950" align="end">
         <div className="flex items-center justify-start gap-2 p-2">
           <div className="flex flex-col space-y-1 leading-none">
             {user.name && <p className="font-medium">{user.name}</p>}
@@ -36,7 +36,22 @@ function UserButton({ user }: Props) {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href={"/"}>Skrrt</Link>
+          <div className="cursor-pointer flex items-center justify-between">
+            <Link href={"/quiz"}>New quiz</Link>
+            <GraduationCapIcon size={16} />
+          </div>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <div className="cursor-pointer flex items-center justify-between">
+            <Link href={"/dashboard"}>Dashboard</Link>
+            <LayoutDashboard size={16} />
+          </div>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <div className="cursor-pointer flex items-center justify-between">
+            <Link href={"/profile"}>Profile</Link>
+            <User size={16} />
+          </div>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem

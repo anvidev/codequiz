@@ -9,10 +9,13 @@ function UserAvatar({ user }: Props) {
   return (
     <Avatar className="h-8 w-8 rounded-md">
       <AvatarImage
-        src={user.image || `https://ui-avatars.com/api/?name=${user.name}`}
+        src={
+          user.image ||
+          `https://ui-avatars.com/api/?name=${user.name?.substring(0, 2)}`
+        }
         alt="User avatar image"
       />
-      <AvatarFallback>{JSON.stringify(user.name, null, 2)}</AvatarFallback>
+      <AvatarFallback>{user.name?.substring(0, 2)}</AvatarFallback>
     </Avatar>
   );
 }

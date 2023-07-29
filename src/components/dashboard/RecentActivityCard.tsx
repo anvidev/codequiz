@@ -1,0 +1,33 @@
+"use client";
+
+import React from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/Card";
+import { HistoryIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+
+interface Props {}
+
+function RecentActivityCard({}: Props) {
+  const router = useRouter();
+
+  return (
+    <Card className="group hover:border-zinc-50 cursor-pointer transition-all duration-300">
+      <CardHeader>
+        <div className="flex flex-row items-center justify-between">
+          <CardTitle className="text-xl font-bold">Recent activity</CardTitle>
+          <HistoryIcon className="w-8 h-8" />
+        </div>
+        <CardDescription>Here is your last five quizzes.</CardDescription>
+      </CardHeader>
+      <CardContent className="max-h-96 overflow-y-auto">Quiz</CardContent>
+    </Card>
+  );
+}
+
+export { RecentActivityCard };
