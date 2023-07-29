@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import { HistoryIcon } from "lucide-react";
+import { ActivitySquare } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface Props {}
@@ -21,7 +21,7 @@ function RecentActivityCard({}: Props) {
       <CardHeader>
         <div className="flex flex-row items-center justify-between">
           <CardTitle className="text-xl font-bold">Recent activity</CardTitle>
-          <HistoryIcon className="w-8 h-8" />
+          <ActivitySquare className="w-8 h-8" />
         </div>
         <CardDescription>Here is your last five quizzes.</CardDescription>
       </CardHeader>
