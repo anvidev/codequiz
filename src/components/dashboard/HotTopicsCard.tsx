@@ -37,7 +37,7 @@ function HotTopicsCard({}: Props) {
   const router = useRouter();
 
   return (
-    <Card className="group hover:border-zinc-50 transition-all duration-300">
+    <Card>
       <CardHeader>
         <div className="flex flex-row items-center justify-between">
           <CardTitle className="text-xl font-bold">Hottest languages</CardTitle>

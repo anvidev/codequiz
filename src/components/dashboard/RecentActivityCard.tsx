@@ -17,7 +17,7 @@ function RecentActivityCard({}: Props) {
   const router = useRouter();
 
   return (
-    <Card className="group hover:border-zinc-50 cursor-pointer transition-all duration-300">
+    <Card>
       <CardHeader>
         <div className="flex flex-row items-center justify-between">
           <CardTitle className="text-xl font-bold">Recent activity</CardTitle>
