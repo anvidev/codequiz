@@ -1,6 +1,5 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
 
 interface Props {
@@ -45,10 +44,7 @@ function CustomBarChart({ data }: Props) {
             <pre>{lang.amount}</pre>
           </div>
           <div
-            className={cn(
-              null,
-              "absolute h-full w-0 block bg-violet-600/20 border border-violet-600 rounded-md transition-all duration-500 group-hover/bar:bg-violet-600/40 max-w-full"
-            )}
+            className="absolute h-full w-0 block bg-violet-600/20 border border-violet-600 rounded-md transition-all duration-500 group-hover/bar:bg-violet-600/40 max-w-full"
             style={{
               width: ((lang.amount / max) * parentWidth) / 1.2,
             }}
