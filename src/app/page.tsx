@@ -17,7 +17,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <main className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <Card className="w-96">
         <CardHeader>
           <CardTitle>Welcome to CodeQuiz</CardTitle>
@@ -30,6 +30,6 @@ export default async function Home() {
           <SignInButton />
         </CardContent>
       </Card>
-    </div>
+    </main>
   );
 }
