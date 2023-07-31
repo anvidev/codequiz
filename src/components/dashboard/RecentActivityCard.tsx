@@ -7,7 +7,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card";
+} from "@/components/ui/card";
 import { ActivitySquare } from "lucide-react";
 import { useRouter } from "next/navigation";
 

@@ -5,7 +5,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card";
+} from "@/components/ui/card";
 import { getAuthSession } from "@/lib/nextauth";
 import { redirect } from "next/navigation";
 

@@ -7,7 +7,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card";
+} from "@/components/ui/card";
 import { FlameIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { CustomBarChart } from "@/components/dashboard/CustomBarChart";
