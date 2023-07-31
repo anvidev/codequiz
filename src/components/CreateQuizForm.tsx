@@ -117,7 +117,7 @@ function CreateQuizForm({}: Props) {
               <FormLabel>Difficulty</FormLabel>
               <FormField
                 name="difficulty"
-                render={({ field }) => (
+                render={() => (
                   <div className="flex justify-between">
                     <Button
                       className="w-1/3 rounded-none rounded-l-md"

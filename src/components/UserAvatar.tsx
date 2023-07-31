@@ -15,7 +15,9 @@ function UserAvatar({ user }: Props) {
         }
         alt="User avatar image"
       />
-      <AvatarFallback>{user.name?.substring(0, 2)}</AvatarFallback>
+      <AvatarFallback className="h-8 w-8 rounded-md">
+        {user.name?.substring(0, 2)}
+      </AvatarFallback>
     </Avatar>
   );
 }
