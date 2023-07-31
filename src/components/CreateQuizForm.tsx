@@ -16,7 +16,6 @@ import { languages } from "@/data/languages";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -50,13 +49,15 @@ function CreateQuizForm({}: Props) {
     alert(JSON.stringify(input, null, 2));
   }
 
+  form.watch();
+
   return (
     <Card className="w-96">
       <CardHeader>
         <CardTitle>Start new quiz</CardTitle>
         <CardDescription>
-          Choose a programming language and a difficulty level to start a new
-          quiz.
+          Choose a programming language, amount of questions and a difficulty
+          level to start the quiz.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -76,7 +77,11 @@ function CreateQuizForm({}: Props) {
                     </FormControl>
                     <SelectContent>
                       {languages.map((language) => (
-                        <SelectItem key={language.label} value={language.value}>
+                        <SelectItem
+                          key={language.label}
+                          value={language.value}
+                          className="cursor-pointer"
+                        >
                           {language.label}
                         </SelectItem>
                       ))}
@@ -108,6 +113,56 @@ function CreateQuizForm({}: Props) {
                 </FormItem>
               )}
             />
+            <FormItem>
+              <FormLabel>Difficulty</FormLabel>
+              <FormField
+                name="difficulty"
+                render={({ field }) => (
+                  <div className="flex justify-between">
+                    <Button
+                      className="w-1/3 rounded-none rounded-l-md"
+                      onClick={() => form.setValue("difficulty", "novice")}
+                      variant={
+                        form.getValues("difficulty") === "novice"
+                          ? "default"
+                          : "outline"
+                      }
+                      type="button"
+                    >
+                      Novice
+                    </Button>
+
+                    <Button
+                      className="w-1/3 rounded-none border-l-0 border-r-0"
+                      onClick={() =>
+                        form.setValue("difficulty", "intermediate")
+                      }
+                      variant={
+                        form.getValues("difficulty") === "intermediate"
+                          ? "default"
+                          : "outline"
+                      }
+                      type="button"
+                    >
+                      Intermediate
+                    </Button>
+
+                    <Button
+                      className="w-1/3 rounded-none rounded-r-md"
+                      onClick={() => form.setValue("difficulty", "advanced")}
+                      variant={
+                        form.getValues("difficulty") === "advanced"
+                          ? "default"
+                          : "outline"
+                      }
+                      type="button"
+                    >
+                      Advanced
+                    </Button>
+                  </div>
+                )}
+              />
+            </FormItem>
             <Button type="submit">Submit</Button>
           </form>
         </Form>
