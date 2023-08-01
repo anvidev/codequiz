@@ -45,4 +45,40 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  games         Game[]
+}
+
+enum Difficulty {
+  NOVICE
+  INTERMEDIATE
+  ADVANCED
+}
+
+model Game {
+  id           String     @id @default(cuid())
+  userId       String
+  progLanguage String
+  difficulty   Difficulty
+  timeStarted  DateTime
+  timeEnded    DateTime?
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questions    Question[]
+
+  @@index([userId], name: "userId")
+}
+
+model Question {
+  id            String     @id @default(cuid())
+  gameId        String
+  question      String
+  correctAnswer String
+  options       Json
+  timeAsked     DateTime
+  timeAnswered  DateTime?
+  userAnswer    String?
+  isCorrect     Boolean?
+  difficulty    Difficulty
+  game          Game       @relation(fields: [gameId], references: [id], onDelete: Cascade)
+
+  @@index([gameId], name: "gameId")
 }

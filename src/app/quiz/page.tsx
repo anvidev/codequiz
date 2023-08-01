@@ -1,4 +1,4 @@
-import { CreateQuizForm } from "@/components/CreateQuizForm";
+import { CreateQuizForm } from "@/components/dashboard/CreateQuizForm";
 import { getAuthSession } from "@/lib/nextauth";
 import { redirect } from "next/navigation";
 
