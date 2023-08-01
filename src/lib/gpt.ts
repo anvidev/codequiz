@@ -67,11 +67,13 @@ export async function strict_output(
       ],
     });
 
-    let res: string =
-      response.data.choices[0].message?.content?.replace(/'/g, '"') ?? "";
+    // let res: string =
+    //   response.data.choices[0].message?.content?.replace(/'/g, '"') ?? "";
 
-    // ensure that we don't replace away apostrophes in text
-    res = res.replace(/(\w)"(\w)/g, "$1'$2");
+    // // ensure that we don't replace away apostrophes in text
+    // res = res.replace(/(\w)"(\w)/g, "$1'$2");
+
+    let res = response.data.choices[0].message?.content ?? "";
 
     if (verbose) {
       console.log(
