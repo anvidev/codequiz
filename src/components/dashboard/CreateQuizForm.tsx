@@ -33,6 +33,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 interface Props {}
 
@@ -191,6 +192,9 @@ function CreateQuizForm({}: Props) {
               />
             </FormItem>
             <Button type="submit" disabled={loadingGame}>
+              {loadingGame ? (
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              ) : null}
               Submit
             </Button>
           </form>
