@@ -6,15 +6,15 @@ import { getAuthSession } from "@/lib/nextauth";
 
 // POST: /api/questions
 export async function POST(req: Request, res: Response) {
-  const session = await getAuthSession();
+  // const session = await getAuthSession();
 
-  if (!session?.user)
-    return NextResponse.json(
-      {
-        error: "Unauthorized. You must login to generate questions for a quiz.",
-      },
-      { status: 401 }
-    );
+  // if (!session?.user)
+  //   return NextResponse.json(
+  //     {
+  //       error: "Unauthorized. You must login to generate questions for a quiz.",
+  //     },
+  //     { status: 401 }
+  //   );
 
   try {
     const body = await req.json();

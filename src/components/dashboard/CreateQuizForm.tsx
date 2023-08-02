@@ -30,23 +30,50 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface Props {}
 
 type Input = z.infer<typeof CreateQuizFormSchema>;
 
 function CreateQuizForm({}: Props) {
+  const router = useRouter();
   const form = useForm<Input>({
     resolver: zodResolver(CreateQuizFormSchema),
     defaultValues: {
       language: "",
-      difficulty: "novice",
+      difficulty: "NOVICE",
       amount: 5,
     },
   });
 
+  const { mutate: createGame, isLoading: loadingGame } = useMutation({
+    mutationFn: async ({ language, difficulty, amount }: Input) => {
+      const { data } = await axios.post("/api/game", {
+        language,
+        difficulty,
+        amount,
+      });
+
+      return data;
+    },
+  });
+
   function onSubmit(input: Input) {
-    alert(JSON.stringify(input, null, 2));
+    createGame(
+      {
+        language: input.language,
+        difficulty: input.difficulty,
+        amount: input.amount,
+      },
+      {
+        onSuccess: ({ gameId }) => {
+          router.push(`/quiz/${gameId}`);
+        },
+      }
+    );
   }
 
   form.watch();
@@ -121,9 +148,9 @@ function CreateQuizForm({}: Props) {
                   <div className="flex justify-between">
                     <Button
                       className="w-1/3 rounded-none rounded-l-md"
-                      onClick={() => form.setValue("difficulty", "novice")}
+                      onClick={() => form.setValue("difficulty", "NOVICE")}
                       variant={
-                        form.getValues("difficulty") === "novice"
+                        form.getValues("difficulty") === "NOVICE"
                           ? "default"
                           : "outline"
                       }
@@ -135,10 +162,10 @@ function CreateQuizForm({}: Props) {
                     <Button
                       className="w-1/3 rounded-none border-l-0 border-r-0"
                       onClick={() =>
-                        form.setValue("difficulty", "intermediate")
+                        form.setValue("difficulty", "INTERMEDIATE")
                       }
                       variant={
-                        form.getValues("difficulty") === "intermediate"
+                        form.getValues("difficulty") === "INTERMEDIATE"
                           ? "default"
                           : "outline"
                       }
@@ -149,9 +176,9 @@ function CreateQuizForm({}: Props) {
 
                     <Button
                       className="w-1/3 rounded-none rounded-r-md"
-                      onClick={() => form.setValue("difficulty", "advanced")}
+                      onClick={() => form.setValue("difficulty", "ADVANCED")}
                       variant={
-                        form.getValues("difficulty") === "advanced"
+                        form.getValues("difficulty") === "ADVANCED"
                           ? "default"
                           : "outline"
                       }
@@ -163,7 +190,9 @@ function CreateQuizForm({}: Props) {
                 )}
               />
             </FormItem>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" disabled={loadingGame}>
+              Submit
+            </Button>
           </form>
         </Form>
       </CardContent>

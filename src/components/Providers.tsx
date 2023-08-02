@@ -7,12 +7,22 @@ import {
   ThemeProvider,
 } from "next-themes";
 import { type ThemeProviderProps } from "next-themes/dist/types";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function Providers({ children, ...props }: ThemeProviderProps) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <SessionProvider>{children}</SessionProvider>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        {...props}
+      >
+        <SessionProvider>{children}</SessionProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 

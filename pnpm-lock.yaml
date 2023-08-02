@@ -35,6 +35,9 @@ dependencies:
   '@radix-ui/react-slot':
     specifier: ^1.0.2
     version: 1.0.2(@types/react@18.2.17)(react@18.2.0)
+  '@tanstack/react-query':
+    specifier: ^4.32.1
+    version: 4.32.1(react-dom@18.2.0)(react@18.2.0)
   '@types/node':
     specifier: 20.4.5
     version: 20.4.5
@@ -47,6 +50,9 @@ dependencies:
   autoprefixer:
     specifier: 10.4.14
     version: 10.4.14(postcss@8.4.27)
+  axios:
+    specifier: ^1.4.0
+    version: 1.4.0
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -1049,6 +1055,28 @@ packages:
       tslib: 2.6.1
     dev: false
 
+  /@tanstack/query-core@4.32.1:
+    resolution: {integrity: sha512-VEAGHboOFWN/bvf/7cCoeLQfld0AA8n0V/kfc77W+FvxnnSwJufEh6gfjqpX5bRE/DEYfYDYdNtuL3KM+lIs8Q==}
+    dev: false
+
+  /@tanstack/react-query@4.32.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-lPTfOq6bR6DorPaS018gTMd3zs8r06tlERiVY6BRP9SnDkkl4ckqeANava/jPLWrSZP+EA15loQUTmvZs6k2GA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.32.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
   /@types/json5@0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: false
@@ -1323,6 +1351,16 @@ packages:
     resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
     dependencies:
       follow-redirects: 1.15.2
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /axios@1.4.0:
+    resolution: {integrity: sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==}
+    dependencies:
+      follow-redirects: 1.15.2
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
     dev: false
