@@ -70,10 +70,10 @@ export async function strict_output(
     // let res: string =
     //   response.data.choices[0].message?.content?.replace(/'/g, '"') ?? "";
 
-    // // ensure that we don't replace away apostrophes in text
-    // res = res.replace(/(\w)"(\w)/g, "$1'$2");
-
     let res = response.data.choices[0].message?.content ?? "";
+
+    // // ensure that we don't replace away apostrophes in text
+    res = res.replace(/(\w)"(\w)/g, "$1'$2");
 
     if (verbose) {
       console.log(

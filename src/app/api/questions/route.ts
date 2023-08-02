@@ -2,9 +2,20 @@ import { NextResponse } from "next/server";
 import { CreateQuizFormSchema } from "@/schemas/form/quiz";
 import { ZodError } from "zod";
 import { strict_output } from "@/lib/gpt";
+import { getAuthSession } from "@/lib/nextauth";
 
 // POST: /api/questions
 export async function POST(req: Request, res: Response) {
+  const session = await getAuthSession();
+
+  if (!session?.user)
+    return NextResponse.json(
+      {
+        error: "Unauthorized. You must login to generate questions for a quiz.",
+      },
+      { status: 401 }
+    );
+
   try {
     const body = await req.json();
     const { language, amount, difficulty } = CreateQuizFormSchema.parse(body);
