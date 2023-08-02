@@ -5,7 +5,7 @@ export const CreateQuizFormSchema = z
   .object({
     language: z.string(),
     amount: z.number().int().min(1).max(10),
-    difficulty: z.enum(["novice", "intermediate", "advanced"]),
+    difficulty: z.enum(["NOVICE", "INTERMEDIATE", "ADVANCED"]),
   })
   .required()
   .refine(
