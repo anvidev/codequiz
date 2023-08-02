@@ -20,7 +20,6 @@ export async function POST(req: Request, res: Response) {
     const body = await req.json();
     const { language, amount, difficulty } = CreateQuizFormSchema.parse(body);
 
-    console.log("Creating game...");
     const game = await prisma.game.create({
       data: {
         userId: session.user.id,
@@ -29,9 +28,7 @@ export async function POST(req: Request, res: Response) {
         timeStarted: new Date(),
       },
     });
-    console.log("Game created!");
 
-    console.log("Fetching questions...");
     const { data } = await axios.post(`${process.env.BASE_URL}/api/questions`, {
       language,
       amount,
@@ -52,13 +49,10 @@ export async function POST(req: Request, res: Response) {
         timeAsked: new Date(),
       };
     });
-    console.log(`Questions fetched (${questions.length})!`);
 
-    console.log("Creating questions in db...");
     await prisma.question.createMany({
       data: questions,
     });
-    console.log("Questions created in db!");
 
     return NextResponse.json({ gameId: game.id }, { status: 200 });
   } catch (error) {
