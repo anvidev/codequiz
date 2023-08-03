@@ -3,7 +3,7 @@ import { getAuthSession } from "@/lib/nextauth";
 import { redirect } from "next/navigation";
 
 export const metadata = {
-  title: "Quiz - CodeQuiz",
+  title: "New Quiz - CodeQuiz",
 };
 
 export default async function QuizPage() {

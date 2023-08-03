@@ -16,3 +16,9 @@ export const CreateQuizFormSchema = z
       message: "Programming language is not supported yet.",
     }
   );
+
+export const checkAnswerSchema = z
+  .object({
+    answer: z.string().nonempty(),
+  })
+  .required();
