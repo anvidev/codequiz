@@ -26,7 +26,7 @@ function QuizHistoryCard({}: Props) {
           <HistoryIcon className="w-8 h-8" />
         </div>
         <CardDescription>
-          View your previous quizzes and see how you've improved over time.
+          View your previous quizzes and see how you have improved over time.
         </CardDescription>
       </CardHeader>
     </Card>
