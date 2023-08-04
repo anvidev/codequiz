@@ -10,7 +10,7 @@ import { z } from "zod";
 import { checkAnswerSchema } from "@/schemas/form/quiz";
 import { useToast } from "@/components/ui/use-toast";
 import { Loader2 } from "lucide-react";
-import { FinishCard } from "./FinishCard";
+import { FinishCard } from "@/components/quiz/FinishCard";
 
 interface Props {
   game: Game & { questions: Pick<Question, "id" | "question" | "options">[] };
