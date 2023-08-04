@@ -130,6 +130,7 @@ function CreateQuizForm({}: Props) {
                       {...field}
                       type="number"
                       pattern="\d*"
+                      inputMode="numeric"
                       placeholder="Type an amount"
                       min={1}
                       max={10}
