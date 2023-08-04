@@ -12,7 +12,7 @@ export default async function QuizPage() {
   if (!session?.user) redirect("/");
 
   return (
-    <main className="p-4">
+    <main className="px-4 py-2">
       <CreateQuizForm />
     </main>
   );
