@@ -10,6 +10,7 @@ import { z } from "zod";
 import { checkAnswerSchema } from "@/schemas/form/quiz";
 import { useToast } from "@/components/ui/use-toast";
 import { Loader2 } from "lucide-react";
+import { FinishCard } from "./FinishCard";
 
 interface Props {
   game: Game & { questions: Pick<Question, "id" | "question" | "options">[] };
@@ -22,6 +23,7 @@ function Quiz({ game }: Props) {
   );
   const [correctAnswers, setCorrectAnswers] = React.useState<number>(0);
   const [wrongAnswers, setWrongAnswers] = React.useState<number>(0);
+  const [isFinished, setIsFinished] = React.useState<boolean>(false);
   const { toast } = useToast();
 
   const currentQuestion = React.useMemo(
@@ -72,10 +74,16 @@ function Quiz({ game }: Props) {
               "You answered incorrectly. Better luck on next question!",
           });
         }
+
+        if (questionIndex === game.questions.length - 1) {
+          setIsFinished(true);
+          return;
+        }
+
         setQuestionIndex((prev) => prev + 1);
       },
     });
-  }, [checkAnswer, toast, isChecking]);
+  }, [checkAnswer, toast, isChecking, questionIndex, game.questions.length]);
 
   React.useEffect(() => {
     function keyDown(e: KeyboardEvent) {
@@ -90,6 +98,10 @@ function Quiz({ game }: Props) {
 
     return () => document.removeEventListener("keydown", keyDown);
   }, [handleNext]);
+
+  if (isFinished) {
+    return <FinishCard />;
+  }
 
   return (
     <div className="flex flex-col gap-4">
