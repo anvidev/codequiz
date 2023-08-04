@@ -89,7 +89,7 @@ function Quiz({ game }: Props) {
     document.addEventListener("keydown", keyDown);
 
     return () => document.removeEventListener("keydown", keyDown);
-  }, []);
+  }, [handleNext]);
 
   return (
     <div className="flex flex-col gap-4">
