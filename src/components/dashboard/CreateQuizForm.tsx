@@ -80,7 +80,7 @@ function CreateQuizForm({}: Props) {
   form.watch();
 
   return (
-    <Card className="w-96">
+    <Card className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-sm">
       <CardHeader>
         <CardTitle>Start new quiz</CardTitle>
         <CardDescription>
@@ -129,6 +129,7 @@ function CreateQuizForm({}: Props) {
                     <Input
                       {...field}
                       type="number"
+                      pattern="\d*"
                       placeholder="Type an amount"
                       min={1}
                       max={10}
