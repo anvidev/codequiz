@@ -11,6 +11,8 @@ import { checkAnswerSchema } from "@/schemas/form/quiz";
 import { useToast } from "@/components/ui/use-toast";
 import { Loader2 } from "lucide-react";
 import { FinishCard } from "@/components/quiz/FinishCard";
+import { differenceInSeconds } from "date-fns";
+import { formatTimeDelta } from "@/lib/utils";
 
 interface Props {
   game: Game & { questions: Pick<Question, "id" | "question" | "options">[] };
@@ -24,7 +26,16 @@ function Quiz({ game }: Props) {
   const [correctAnswers, setCorrectAnswers] = React.useState<number>(0);
   const [wrongAnswers, setWrongAnswers] = React.useState<number>(0);
   const [isFinished, setIsFinished] = React.useState<boolean>(false);
+  const [now, setNow] = React.useState(new Date());
   const { toast } = useToast();
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isFinished) setNow(new Date());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isFinished]);
 
   const currentQuestion = React.useMemo(
     () => game.questions[questionIndex],
@@ -109,6 +120,8 @@ function Quiz({ game }: Props) {
     );
   }
 
+  // console.log({ now: now, gameStarted: game.timeStarted });
+
   return (
     <div className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-10/12 flex flex-col gap-4">
       <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
@@ -127,7 +140,7 @@ function Quiz({ game }: Props) {
         </div>
         <div className="flex items-center gap-2">
           <Badge variant="outline" className="text-base space-x-2">
-            00:24
+            {formatTimeDelta(differenceInSeconds(now, game.timeStarted))}
           </Badge>
           <Badge
             variant="outline"
@@ -158,7 +171,7 @@ function Quiz({ game }: Props) {
           key={index}
           variant={selectedOption === index ? "default" : "outline"}
           onClick={() => setSelectedOption(index)}
-          className="justify-start w-full py-8 space-y-4 text-base group"
+          className="justify-start w-full py-4 space-y-4 text-base group h-fit"
         >
           <div className="flex items-center justify-start">
             <div className="p-2 px-4 mr-4 border border-b-2 rounded-md transition-all font-mono group-hover:border-zinc-950 duration-300">

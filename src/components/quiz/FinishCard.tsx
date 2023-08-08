@@ -31,7 +31,7 @@ function FinishCard({ correctAnswers, wrongAnswers, gameId }: Props) {
             {questionRatio > 50 ? "Great job!" : "Better luck next time!"}
           </CardTitle>
           <CardDescription>
-            You completed the quest in 1m 12s with a {questionRatio}% success
+            You completed the quiz in 1m 12s with a {questionRatio}% success
             ratio.
           </CardDescription>
         </CardHeader>
