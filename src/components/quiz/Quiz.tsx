@@ -100,12 +100,17 @@ function Quiz({ game }: Props) {
   }, [handleNext]);
 
   if (isFinished) {
-    return <FinishCard />;
+    return (
+      <FinishCard
+        correctAnswers={correctAnswers}
+        wrongAnswers={wrongAnswers}
+        gameId={game.id}
+      />
+    );
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      {/* Quiz meta data */}
+    <div className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-10/12 flex flex-col gap-4">
       <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
         <div className="flex items-center gap-2">
           <Badge variant="outline" className="text-base">
@@ -138,7 +143,6 @@ function Quiz({ game }: Props) {
           </Badge>
         </div>
       </div>
-      {/* Quiz question */}
       <div className="flex items-start rounded-md border p-6 flex-col gap-2">
         <div className="flex items-center gap-1 text-xs text-muted-foreground">
           <span>{questionIndex + 1}</span>
@@ -149,7 +153,6 @@ function Quiz({ game }: Props) {
           {game.questions[questionIndex].question}
         </h1>
       </div>
-      {/* Quiz options */}
       {currentOptions?.map((option, index) => (
         <Button
           key={index}
@@ -165,9 +168,9 @@ function Quiz({ game }: Props) {
           </div>
         </Button>
       ))}
-      {/* Next button */}
       <Button
         disabled={selectedOption === null || isChecking}
+        size="lg"
         className="w-fit flex gap-2 self-end"
         onClick={handleNext}
       >

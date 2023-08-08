@@ -36,7 +36,7 @@ export default async function QuizPage({ params: { gameId } }: Props) {
   if (!game) redirect("/quiz");
 
   return (
-    <main className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-4/5 max-w-4xl w-[90vw]">
+    <main className="px-4 py-3">
       <Quiz game={game} />
     </main>
   );
