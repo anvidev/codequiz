@@ -123,7 +123,7 @@ function Quiz({ game }: Props) {
   // console.log({ now: now, gameStarted: game.timeStarted });
 
   return (
-    <div className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-10/12 flex flex-col gap-4">
+    <div className="md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 max-w-7xl md:w-[700px] flex flex-col gap-4">
       <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
         <div className="flex items-center gap-2">
           <Badge variant="outline" className="text-base">
